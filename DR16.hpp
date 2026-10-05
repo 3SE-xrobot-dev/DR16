@@ -165,11 +165,11 @@ class DR16
    */
   struct Param
   {
-    uint32_t task_stack_depth_uart;  ///< 接收线程栈深
+    uint32_t task_stack_depth_uart = 2048;  ///< 接收线程栈深
                                      ///< Receive thread stack depth
-    LibXR::Thread::Priority thread_priority_uart;  ///< 接收线程优先级
+    LibXR::Thread::Priority thread_priority_uart = LibXR::Thread::Priority::HIGH;  ///< 接收线程优先级
                                                    ///< Receive thread priority
-    uint8_t stop_bits;  ///< Hero DBUS uses 8E2
+    uint8_t stop_bits = 2;  ///< Hero DBUS uses 8E2
   };
 
   /**
@@ -185,10 +185,9 @@ class DR16
    * @param param 配置参数。
    *              Configuration parameters.
    */
-  DR16(LibXR::UART& uart, CMD& cmd,
-       const Param& param = Param{.task_stack_depth_uart = 2048,
-                                 .thread_priority_uart = LibXR::Thread::Priority::HIGH,
-                                 .stop_bits = 2})
+  DR16(LibXR::UART& uart, CMD& cmd) : DR16(uart, cmd, Param{}) {}
+
+  DR16(LibXR::UART& uart, CMD& cmd, const Param& param)
       : cmd_(&cmd), uart_(std::addressof(uart)), sem_(0), op_(sem_, 4)
   {
     uart_->SetConfig({100000, LibXR::UART::Parity::EVEN, 8, param.stop_bits});
