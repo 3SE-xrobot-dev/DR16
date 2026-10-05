@@ -2,7 +2,8 @@
 
 3SE fork of [QDU-Robomaster/DR16](https://github.com/QDU-Robomaster/DR16)
 at `79c22deb4187f5af4225077fe19434bd81835171` (Apache-2.0). Upstream
-CLI examples below use the QDU namespace; this copy is currently local.
+CLI examples below retain the QDU namespace; this repository is published at
+https://github.com/3SE-xrobot-dev/DR16.
 
 DR16 遥控接收机解析模块：从 UART 接收 DBUS 数据并转换为 CMD 控制数据 / Module that parses DR16 receiver DBUS data from a UART and passes it to CMD as control data
 
