@@ -335,7 +335,8 @@ class DR16
 
     if (((curr_rc.key & RawValue(Key::KEY_F)) &&
          !(this->last_data_.key & RawValue(Key::KEY_F))) ||
-        (curr_rc.sw_l == 1 && this->last_data_.sw_l != 1))
+        (curr_rc.sw_l == 1 && this->last_data_.sw_l != 0 &&
+         this->last_data_.sw_l != 1))
     {
       this->fric_enable_ = !this->fric_enable_;
     }
